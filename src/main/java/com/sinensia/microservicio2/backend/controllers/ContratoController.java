@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sinensia.microservicio2.backend.model.Contrato;
 import com.sinensia.microservicio2.backend.services.ContratoRepository;
 
+@CrossOrigin
+
 @RestController
 @RequestMapping("/contrato")
 public class ContratoController {
-	
 	@Autowired
 	private ContratoRepository contratoRepository;
 	
@@ -28,7 +30,7 @@ public class ContratoController {
 	{
 		contrato.setCodigoTienda(tienda);
 		Contrato contratoGenerado = contratoRepository.save(contrato);
-		return contratoGenerado.getCodigo();
+		return contratoGenerado.getId();
 	}
 	
 	@GetMapping("/all")

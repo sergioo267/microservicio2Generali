@@ -16,69 +16,86 @@ import javax.persistence.TemporalType;
 public class Contrato {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long codigo;
+	private Long id;
 
-	private String nombreProducto;
-	private String precioSeguro;
+	private String nombre;
+	private String precio;
 	
 	@Enumerated(EnumType.STRING)
-	private TipoContrato tipoContrato;
+	private TipoContrato tipo;
 	
 	private String ean;
+	private String upc;
+	
 	private Long codigoTienda;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaInicio = new Date();
 	
+	public Contrato(Long id, String nombre, String precio, TipoContrato tipo, String ean, String upc, Long codigoTienda,
+			Date fechaInicio) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.tipo = tipo;
+		this.ean = ean;
+		this.upc = upc;
+		this.codigoTienda = codigoTienda;
+		this.fechaInicio = fechaInicio;
+	}
+	
+	
 	public Contrato() {
 		
 	}
 
-	public Contrato(Long codigo, String nombreProducto, String precioSeguro, TipoContrato tipoContrato, String ean, Long codigoTienda, Date fechaInicio) {
-		super();
-		this.codigo = codigo;
-		this.nombreProducto = nombreProducto;
-		this.precioSeguro = precioSeguro;
-		this.tipoContrato = tipoContrato;
-		this.ean = ean;
-		this.codigoTienda = codigoTienda;
-		this.fechaInicio = fechaInicio;
+	public Long getId() {
+		return id;
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getNombreProducto() {
-		return nombreProducto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public String getPrecio() {
+		return precio;
 	}
 
-	public String getPrecioSeguro() {
-		return precioSeguro;
+	public void setPrecio(String precio) {
+		this.precio = precio;
 	}
 
-	public void setPrecioSeguro(String precioSeguro) {
-		this.precioSeguro = precioSeguro;
+	public TipoContrato getTipo() {
+		return tipo;
 	}
 
-	public TipoContrato getTipoContrato() {
-		return tipoContrato;
-	}
-
-	public void setTipoContrato(TipoContrato tipoContrato) {
-		this.tipoContrato = tipoContrato;
+	public void setTipo(TipoContrato tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getEan() {
 		return ean;
+	}
+
+	public void setEan(String ean) {
+		this.ean = ean;
+	}
+
+	public String getUpc() {
+		return upc;
+	}
+
+	public void setUpc(String upc) {
+		this.upc = upc;
 	}
 
 	public Long getCodigoTienda() {
@@ -88,8 +105,6 @@ public class Contrato {
 	public void setCodigoTienda(Long codigoTienda) {
 		this.codigoTienda = codigoTienda;
 	}
-	
-	
 
 	public Date getFechaInicio() {
 		return fechaInicio;
@@ -99,15 +114,11 @@ public class Contrato {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public void setEan(String caracteristicas) {
-		this.ean = caracteristicas;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -120,16 +131,18 @@ public class Contrato {
 		if (getClass() != obj.getClass())
 			return false;
 		Contrato other = (Contrato) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Contrato [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", tipo=" + tipo + ", ean=" + ean
+				+ ", upc=" + upc + ", codigoTienda=" + codigoTienda + ", fechaInicio=" + fechaInicio + "]";
+	}
 	
 }
